@@ -23,7 +23,7 @@ for j=1:length(epsilon)
     end
     var_Warner_experiment(j)=var(E_pi);
 end
-plot(epsilon,var_Warner_experiment,'-db','LineWidth',1)
+plot(epsilon,var_Warner_experiment,'-db','LineWidth',1,'MarkerSize',8)
 hold on
 
 %modified Christofides by numerical simulation
@@ -76,7 +76,7 @@ for j=1:46
     end
     var_Christofides_experiment(j)=var(piA_estimation);
 end
-plot(epsilon,var_Christofides_experiment,'-*r','lineWidth',1)
+plot(epsilon,var_Christofides_experiment,'-or','lineWidth',1,'MarkerSize',8)
 
 %the improved Christofides by numerical simulation
 clear
@@ -124,7 +124,7 @@ for j=1:46
     end
     var_the_improved_Christofides_experiment(j)=var(pi_A_estimate);
 end
-plot(epsilon,var_the_improved_Christofides_experiment,'-sk','lineWidth',1)
+plot(epsilon,var_the_improved_Christofides_experiment,'-sk','lineWidth',1,'MarkerSize',8)
 
 xlabel('privacy budget (\epsilon)','FontSize',14)
 ylabel('variance','FontSize',14)

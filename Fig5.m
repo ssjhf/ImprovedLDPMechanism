@@ -7,7 +7,7 @@ N = length(health_insurance);
 
 %modified Warner
 epsilon=0.05:0.01:0.5;
-REPEAT_TIMES=10000;
+REPEAT_TIMES=2;
 p_Warner=exp(epsilon)./(exp(epsilon)+1);
 var_Warner_experiment=zeros(length(epsilon),1);
 for j=1:length(epsilon)
@@ -21,36 +21,36 @@ for j=1:length(epsilon)
     end
     var_Warner_experiment(j)=var(E_pi);
 end
-plot(epsilon,var_Warner_experiment,'-db','LineWidth',1)
+plot(epsilon,var_Warner_experiment,'-db','LineWidth',1,'MarkerSize',8)
 hold on
 
 %modified Simmons
-clear
-clc
-
-load health_insurance.dat
-health_insurance=health_insurance';
-N = length(health_insurance);
-epsilon=0.05:0.01:0.5;
-pi_B = 0.5;
-REPEAT_TIMES=10000;
-var_Simmons_experiment=zeros(length(epsilon),1);
-p_Simmons=(1-pi_B)*(exp(epsilon)-1)./((1-pi_B)*(exp(epsilon)-1)+1);
-
-for j=1:length(epsilon)
-    j
-    E_pi=zeros(REPEAT_TIMES,1);
-
-    for repeat=1:REPEAT_TIMES
-        rand_num1=rand(1,N);
-        rand_num2=rand(1,N);
-        health_insurance_Simmons=(rand_num1<p_Simmons(j)).*((rand_num1<p_Simmons(j))+(1-(rand_num1<p_Simmons(j))).*(rand_num2<pi_B))+(rand_num1>p_Simmons(j)).*(rand_num1>p_Simmons(j)).*(rand_num2<pi_B);
-        lambda=mean(health_insurance_Simmons);
-        E_pi(repeat)=(lambda-(1-p_Simmons(j)*pi_B))/p_Simmons(j);
-    end
-    var_Simmons_experiment(j)=var(E_pi);
-end
-plot(epsilon,var_Simmons_experiment,'-','LineWidth',1,'Color',[0 0.5 0])
+% clear
+% clc
+% 
+% load health_insurance.dat
+% health_insurance=health_insurance';
+% N = length(health_insurance);
+% epsilon=0.05:0.01:0.5;
+% pi_B = 0.5;
+% REPEAT_TIMES=2;
+% var_Simmons_experiment=zeros(length(epsilon),1);
+% p_Simmons=(1-pi_B)*(exp(epsilon)-1)./((1-pi_B)*(exp(epsilon)-1)+1);
+% 
+% for j=1:length(epsilon)
+%     j
+%     E_pi=zeros(REPEAT_TIMES,1);
+% 
+%     for repeat=1:REPEAT_TIMES
+%         rand_num1=rand(1,N);
+%         rand_num2=rand(1,N);
+%         health_insurance_Simmons=(rand_num1<p_Simmons(j)).*((rand_num1<p_Simmons(j))+(1-(rand_num1<p_Simmons(j))).*(rand_num2<pi_B))+(rand_num1>p_Simmons(j)).*(rand_num1>p_Simmons(j)).*(rand_num2<pi_B);
+%         lambda=mean(health_insurance_Simmons);
+%         E_pi(repeat)=(lambda-(1-p_Simmons(j)*pi_B))/p_Simmons(j);
+%     end
+%     var_Simmons_experiment(j)=var(E_pi);
+% end
+% plot(epsilon,var_Simmons_experiment,'-','LineWidth',1,'Color',[0 0.5 0],'MarkerSize',8)
 
 %modified Christofides
 clear
@@ -60,7 +60,7 @@ load health_insurance.dat
 health_insurance=health_insurance';
 N = length(health_insurance);
 L=3;
-REPEAT_TIMES=10000;
+REPEAT_TIMES=2;
 epsilon=0.05:0.01:0.5;
 x=exp(epsilon);
 P2=0.01;
@@ -99,7 +99,7 @@ for j=1:46
     end
     var_Christofides_experiment(j)=var(piA_estimation);
 end
-plot(epsilon,var_Christofides_experiment,'-*r','lineWidth',1)
+plot(epsilon,var_Christofides_experiment,'-or','lineWidth',1,'MarkerSize',8)
 
 %the improved Christofides
 clear
@@ -110,7 +110,7 @@ health_insurance=health_insurance';
 N = length(health_insurance);
 epsilon=0.05:0.01:0.5;
 L=3;
-REPEAT_TIMES=10000;
+REPEAT_TIMES=2;
 x=exp(epsilon);
 P2=0.01;
 p1=(1-P2)./(x+1);
@@ -144,7 +144,7 @@ for j=1:46
     end
     var_the_improved_Christofides_experiment(j)=var(pi_A_estimation);
 end
-plot(epsilon,var_the_improved_Christofides_experiment,'-sk','lineWidth',1)
+plot(epsilon,var_the_improved_Christofides_experiment,'-sk','lineWidth',1,'MarkerSize',8)
 
 xlabel('privacy budget (\epsilon)','FontSize',14)
 ylabel('variance','FontSize',14)

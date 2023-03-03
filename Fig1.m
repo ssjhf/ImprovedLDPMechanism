@@ -11,7 +11,7 @@ epsilon=0.05:0.01:0.5;
 
 %modified Warner by theoretical analysis
 var_Warner_theoretical_analysis=(exp(epsilon)./(exp(epsilon)-1)./(exp(epsilon)-1))/N;
-plot(epsilon,var_Warner_theoretical_analysis,':b','LineWidth',1)
+plot(epsilon,var_Warner_theoretical_analysis,':*b','LineWidth',1)
 hold on
 
 
@@ -31,7 +31,7 @@ for j=1:length(epsilon)
     end
     var_Warner_numrical_simulation(j)=var(E_pi);
 end
-plot(epsilon,var_Warner_numrical_simulation,'-db','LineWidth',1)
+plot(epsilon,var_Warner_numrical_simulation,'-db','LineWidth',1,'MarkerSize',8)
 
 
 clear
@@ -47,7 +47,7 @@ epsilon = 0.05:0.01:0.5;
 %modified Christofides by theoretical analysis
 x=exp(epsilon);
 var_Christofides_theoretical=1/N*(1/4*((x+1).^2)./((x-1).^2*(1-P2))-1);
-plot(epsilon,var_Christofides_theoretical,'--r','lineWidth',1)
+plot(epsilon,var_Christofides_theoretical,'--*r','lineWidth',1)
 hold on
 
 %modified Christofides by numerical simulation
@@ -91,7 +91,7 @@ for j=1:46
     end
     var_Christofides_numerical_simulation(j)=var(pi_A_estimation);
 end
-plot(epsilon,var_Christofides_numerical_simulation,'-*r','lineWidth',1)
+plot(epsilon,var_Christofides_numerical_simulation,'-or','lineWidth',1,'MarkerSize',8)
 
 
 clear
@@ -107,7 +107,7 @@ P2=0.5;
 epsilon = 0.05:0.01:0.5;
 x=exp(epsilon);
 var_the_improved_Christofides_theoretical_analysis=4*PI_A*(1-PI_A)/(N-1)*(1/4*((x+1).^2)./((x-1).^2*(1-P2))-1);
-plot(epsilon,var_the_improved_Christofides_theoretical_analysis,'-.k','lineWidth',1)
+plot(epsilon,var_the_improved_Christofides_theoretical_analysis,'-.*k','lineWidth',1)
 hold on
 
 %the improved Christofides by numerical simulation
@@ -147,11 +147,11 @@ for j=1:46
     end
     var_the_improved_Christofides_numerical_simulation(j)=var(pi_A_estimation);
 end
-plot(epsilon,var_the_improved_Christofides_numerical_simulation,'-sk','lineWidth',1)
+plot(epsilon,var_the_improved_Christofides_numerical_simulation,'-sk','lineWidth',1,'MarkerSize',8)
 
 xlabel('privacy budget (\epsilon)','FontSize',14)
 ylabel('variance','FontSize',14)
-title('comparison of four mechanism')
+title('comparison of four mechanisms')
 set(gca,'FontSize',14);
 xlim([0.05 0.5])
 legend({'modified Warner/Simmons (theoretical analysis)','modified Warner/Simmons (numerical simulation)',...
